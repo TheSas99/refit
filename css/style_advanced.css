@@ -1,0 +1,31 @@
+html {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+form label{
+    width: 200px;
+    margin-right: 10px;
+}
+form input,select{
+    font-size: 1em;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    text-align: center;
+}
+event {
+    border: 1px solid red;
+    border-radius: 10px;
+    margin: 3px;
+}
+
