@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-<?php include 'navigatie.php';?>
+<?php include 'includes/navigatie.php';?>
 <div id="toevoegen">
     <h1>Afspraak aanmaken</h1>
     <form action="select-time.php" method="get">
@@ -27,7 +27,8 @@
         $query = "SELECT *
 FROM reservations
 INNER JOIN klanten
-ON reservations.klantid = klanten.klantid; ";
+ON reservations.klantid = klanten.klantid
+ORDER BY date DESC; ";
 
 
         echo '<table border="0" cellspacing="2" cellpadding="2"> 
@@ -58,8 +59,8 @@ ON reservations.klantid = klanten.klantid; ";
                     <td><b> $datum </b></td>
                     <td><b> $starttijd </b></td>
                     <td><b> $endtijd </b></td>
-                    <td><a href=update.php?id=$id>UPDATE</a></td>  
-                    <td><a href=delete.php?id=$id>DELETE</a></td>  
+                    <td><a href=afspraakupdate.php?id=$id>UPDATE</a></td>  
+                    <td><a href=afspraakdelete.php?id=$id>DELETE</a></td>  
                   </tr>";
             }
             $result->free();
@@ -67,5 +68,6 @@ ON reservations.klantid = klanten.klantid; ";
         ?>
     </div>
 </form>
+<?php include 'includes/footer.php';?>
 </body>
 </html>

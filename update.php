@@ -8,7 +8,7 @@
         <meta name="HandheldFriendly" content="true">
     </head>
 <body>
-<?php include 'navigatie.php';?>
+<?php include 'includes/navigatie.php';?>
 <h1>Updaten</h1>
 <?php
 // mysql connect importeren
@@ -83,3 +83,4 @@ if (isset($_REQUEST['voornaam']))
 // verbinding sluiten
 $mysqli->close();
 ?>
+<?php include 'includes/footer.php';?>

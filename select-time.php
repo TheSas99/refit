@@ -87,7 +87,8 @@ if(isset($_GET['date']) && !empty($_GET['date'])) {
 }
 
 
-
+// Get all artist names for dropdown
+require_once 'includes/klantdata.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -97,7 +98,7 @@ if(isset($_GET['date']) && !empty($_GET['date'])) {
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-<?php include 'navigatie.php';?>
+<?php include 'includes/navigatie.php';?>
 <div id="toevoegen">
     <h1>Afspraak aanmaken</h1>
 
@@ -105,9 +106,19 @@ if(isset($_GET['date']) && !empty($_GET['date'])) {
         <div>
             <p>Reservering voor <?= date('d-m-Y', strtotime($date)) ?></p>
         </div>
-        <div class="data-field">
+        <!--<div class="data-field">
             <label for="klantid">Klantid:</label>
-            <input id="name" type="number" name="klantid" value="<?= (isset($name) ? $name : ''); ?>"/>
+            <input id="name" type="number" name="klantid" value="// (isset($name) ? $name : ''); ?>"/>
+            <span class="errors"><// isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
+        </div>-->
+        <div class="data-field">
+            <label for="voornaam">Klantnaam: </label>
+            <select name="klantid" id="voornaam">
+                <?php foreach ($artists as $artist) { ?>
+                    <option value="<?= $artist['klantid'] ?>"><?= $artist['voornaam'] ?></option>
+
+                <?php } ?>
+            </select>
             <span class="errors"><?= isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
         </div>
         <div class="data-field">
@@ -160,5 +171,6 @@ if(isset($_GET['date']) && !empty($_GET['date'])) {
     }
     ?>
 </div>
+<?php include 'includes/footer.php';?>
 </body>
 </html>

@@ -28,7 +28,7 @@ if (isset($_GET['logout'])) {
     <meta name="HandheldFriendly" content="true">
 </head>
 <body>
-<?php include 'navigatie.php';?>
+<?php include 'includes/navigatie.php';?>
 <div id="toevoegen">
     <h1>Toevoegen</h1>
     <form action="verzonden.php" method="post">
@@ -91,5 +91,6 @@ if (isset($_GET['logout'])) {
     }
 ?>
 </div>
+<?php include 'includes/footer.php';?>
 </body>
 </html>

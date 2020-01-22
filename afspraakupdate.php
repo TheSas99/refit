@@ -8,7 +8,7 @@
     <meta name="HandheldFriendly" content="true">
 </head>
 <body>
-<?php include 'navigatie.php';?>
+<?php include 'includes/navigatie.php';?>
 <h1>Updaten</h1>
 <?php
 // mysql connect importeren
@@ -16,9 +16,9 @@ include "connect.php";
 
 error_reporting(0);
 
-$id = $_GET['klantid'];
+$id = $_GET['id'];
 
-$sql = "SELECT * FROM klanten WHERE klantid =$id";
+$sql = "SELECT * FROM reservations WHERE id =$id";
 
 // variabele $mysqli is het object uit de connect.php
 $result = $mysqli->query($sql);
@@ -30,7 +30,8 @@ while($row = $result->fetch_assoc())
 ?>
 <form method='post'><table width='400' border='0' cellspacing='1' cellpadding='2'>
         <tr><td width=100>Datum</td><td><input name='date' type='text' id='date' value='<?php echo $row['date']; ?>'></td></tr>
-        <tr><td width=100>Tijd</td><td><input name='start_time' type='text' id='start_time' value='<?php echo $row['start_time']; ?>'></td></tr>
+        <tr><td width=100>Starttijd</td><td><input name='start_time' type='text' id='start_time' value='<?php echo $row['start_time']; ?>'></td></tr>
+        <tr><td width=100>Eindtijd</td><td><input name='end_time' type='text' id='end_time' value='<?php echo $row['end_time']; ?>'></td></tr>
         </tr></table>
     </br>
     <input type="submit" value="Updaten"></td>
@@ -42,7 +43,7 @@ while($row = $result->fetch_assoc())
 }
 
 // update uitvoeren
-if (isset($_REQUEST['voornaam']))
+if (isset($_REQUEST['date']))
 {
 // waarden ophalen
     $date = $_POST['date'];
@@ -63,7 +64,7 @@ if (isset($_REQUEST['voornaam']))
     if (mysqli_query($mysqli, $sql2)) {
         echo "Succesvol bijgewerkt";
         // terugsturen naar de hoofdpagina
-        header('Location: klanten.php');
+        header('Location: afspraken.php');
     } else {
         echo "Error updating record: " . mysqli_error($mysqli);
     }
@@ -72,3 +73,4 @@ if (isset($_REQUEST['voornaam']))
 // verbinding sluiten
 $mysqli->close();
 ?>
+<?php include 'includes/footer.php';?>

@@ -11,12 +11,11 @@
         <meta name="HandheldFriendly" content="true">
     </head>
     <body>
-    <?php include 'navigatie.php';?>
+    <?php include 'includes/navigatie.php';?>
     <div id="contact">
         <h1>Contact</h1>
         <p>Klik op de knop om een e-mail te sturen</p>
         <button><a href="mailto:thesas99games@gmail.com">E-mail mij</a></button>
-        <p>Nederland, Rotterdam en omstreken</p>
     </div>
     <br>
     <div id="map">

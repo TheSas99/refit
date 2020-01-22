@@ -9,6 +9,7 @@ $username = "";
 $email    = "";
 $errors   = array();
 
+
 // call the register() function if register_btn is clicked
 if (isset($_POST['register_btn'])) {
     register();
@@ -25,6 +26,16 @@ function register(){
     $email       =  e($_POST['email']);
     $password_1  =  e($_POST['password_1']);
     $password_2  =  e($_POST['password_2']);
+
+    // Escape user inputs for security
+    $username = mysqli_real_escape_string($db, $_REQUEST['username']);
+    $email = mysqli_real_escape_string($db, $REQUEST['email']);
+    $password_1 = mysqli_real_escape_string($db, $_REQUEST['password_1']);
+    $password_2 = mysqli_real_escape_string($db, $_REQUEST['password_2']);
+
+    // Ensure there are no html_tags in form
+    $username = htmlentities($_REQUEST['username']);
+    $email = htmlentities($REQUEST['email']);
 
     // form validation: ensure that the form is correctly filled
     if (empty($username)) {
