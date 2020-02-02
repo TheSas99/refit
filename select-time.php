@@ -19,9 +19,9 @@ while ($time <= strtotime('19:30'))
 
 if(isset($_POST['submit'])) {
     //Postback with the data showed to the user, first retrieve data from 'Super global'
-    $klantid = mysqli_real_escape_string($db, $_POST['klantid']);
-    $time = mysqli_real_escape_string($db, $_POST['time']);
-    $date = mysqli_escape_string($db, $_POST['date']);
+    $klantid = mysqli_real_escape_string($db, htmlentities($_POST['klantid']));
+    $time = mysqli_real_escape_string($db, htmlentities($_POST['time']));
+    $date = mysqli_escape_string($db, htmlentities($_POST['date']));
     $endTime = date('H:i', strtotime($time . ' 1hour'));
     //Require the form validation handling
     require_once "includes/form-validation.php";
@@ -99,53 +99,54 @@ require_once 'includes/klantdata.php';
 </head>
 <body>
 <?php include 'includes/navigatie.php';?>
-<div id="toevoegen">
-    <h1>Afspraak aanmaken</h1>
+<main id="container">
+    <div id="toevoegen">
+        <h1>Afspraak aanmaken</h1>
 
-    <form action="" method="post">
-        <div>
-            <p>Reservering voor <?= date('d-m-Y', strtotime($date)) ?></p>
-        </div>
-        <!--<div class="data-field">
-            <label for="klantid">Klantid:</label>
-            <input id="name" type="number" name="klantid" value="// (isset($name) ? $name : ''); ?>"/>
-            <span class="errors"><// isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
-        </div>-->
-        <div class="data-field">
-            <label for="voornaam">Klantnaam: </label>
-            <select name="klantid" id="voornaam">
-                <?php foreach ($artists as $artist) { ?>
-                    <option value="<?= $artist['klantid'] ?>"><?= $artist['voornaam'] ?></option>
+        <form action="" method="post">
+            <div>
+                <p>Reservering voor <?= date('d-m-Y', strtotime($date)) ?></p>
+            </div>
+            <!--<div class="data-field">
+                <label for="klantid">Klantid:</label>
+                <input id="name" type="number" name="klantid" value="// (isset($name) ? $name : ''); ?>"/>
+                <span class="errors"><// isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
+            </div>-->
+            <div class="data-field">
+                <label for="voornaam">Klantnaam: </label>
+                <select name="klantid" id="voornaam">
+                    <?php foreach ($artists as $artist) { ?>
+                        <option value="<?= $artist['klantid'] ?>"><?= $artist['voornaam'] ?></option>
 
-                <?php } ?>
-            </select>
-            <span class="errors"><?= isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
-        </div>
-        <div class="data-field">
-            <label for="time">Tijd</label>
-            <select name="time" id="time">
-                <?php foreach ($availableTimes as $time) { ?>
-                    <option value="<?= $time ?>"><?= $time ?></option>
-                <?php } ?>
-            </select>
-            <span class="errors"><?= isset($errors['time']) ? $errors['time'] : '' ?></span>
-        </div>
-        <input type="hidden" name="date" value="<?= $date ?>"/>
-        <div class="data-submit">
-            <input type="submit" name="submit" value="Save"/>
-        </div>
-    </form>
-</div>
-<div id="klanten">
-    <h1>Klanten</h1>
-    <?php
-    // mysql connect importeren
-    include "connect.php";
+                    <?php } ?>
+                </select>
+                <span class="errors"><?= isset($errors['klantid']) ? $errors['klantid'] : '' ?></span>
+            </div>
+            <div class="data-field">
+                <label for="time">Tijd</label>
+                <select name="time" id="time">
+                    <?php foreach ($availableTimes as $time) { ?>
+                        <option value="<?= $time ?>"><?= $time ?></option>
+                    <?php } ?>
+                </select>
+                <span class="errors"><?= isset($errors['time']) ? $errors['time'] : '' ?></span>
+            </div>
+            <input type="hidden" name="date" value="<?= $date ?>"/>
+            <div class="data-submit">
+                <input type="submit" name="submit" value="Save"/>
+            </div>
+        </form>
+    </div>
+    <div id="klanten">
+        <h1>Klanten</h1>
+        <?php
+        // mysql connect importeren
+        include "connect.php";
 
-    $query = "SELECT * FROM klanten ";
+        $query = "SELECT * FROM klanten ";
 
 
-    echo '<table border="0" cellspacing="2" cellpadding="2"> 
+        echo '<table border="0" cellspacing="2" cellpadding="2"> 
             <tr> 
                 <td> klantid </td> 
                 <td> voornaam </td> 
@@ -153,24 +154,25 @@ require_once 'includes/klantdata.php';
                 <td> achternaam </td>   
             </tr>';
 
-    if ($result = $mysqli->query($query)) {
-        while ($row = $result->fetch_assoc()) {
-            $id = $row["klantid"];
-            $voornaam = $row["voornaam"];
-            $tussenvoegsel = $row["tussenvoegsel"];
-            $achternaam = $row["achternaam"];
-            $massage = $row["massagesoort"];
+        if ($result = $mysqli->query($query)) {
+            while ($row = $result->fetch_assoc()) {
+                $id = $row["klantid"];
+                $voornaam = $row["voornaam"];
+                $tussenvoegsel = $row["tussenvoegsel"];
+                $achternaam = $row["achternaam"];
+                $massage = $row["massagesoort"];
 
-            echo '<tr> 
+                echo '<tr> 
                     <td><b>'.$id.'</b></td> 
                     <td>'.$voornaam.'</td> 
                     <td>'.$tussenvoegsel.'</td> 
                     <td>'.$achternaam.'</td>';
+            }
+            $result->free();
         }
-        $result->free();
-    }
-    ?>
-</div>
+        ?>
+    </div>
+</main>
 <?php include 'includes/footer.php';?>
 </body>
 </html>

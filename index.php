@@ -9,12 +9,14 @@
     <meta name="HandheldFriendly" content="true">
 </head>
 <body>
-<?php include 'includes/navigatie.php';?>
-    <div id="greeting">
-        <h1>Re-Fit</h1>
-        <button onclick="myFunction()">Klik voor groet!</button>
-        <h3 id="demo"></h3>
-    </div>
-<?php include 'includes/footer.php';?>
+    <main id="container">
+        <?php include 'includes/navigatie.php';?>
+        <div id="greeting">
+            <br>
+            <button onclick="myFunction()">Klik voor groet!</button>
+            <h3 id="demo"></h3>
+        </div>
+        <?php include 'includes/footer.php';?>
+    </main>
 </body>
 </html>

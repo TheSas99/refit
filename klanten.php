@@ -28,69 +28,69 @@ if (isset($_GET['logout'])) {
     <meta name="HandheldFriendly" content="true">
 </head>
 <body>
-<?php include 'includes/navigatie.php';?>
-<div id="toevoegen">
-    <h1>Toevoegen</h1>
-    <form action="verzonden.php" method="post">
-        <p>
-            <label for="voornaam">Voornaam:</label>
-            <input type="text" name="voornaam" id="voornaam" required>
-        </p>
-        <p>
-            <label for="tussenvoegsel">Tussenvoegsel:</label>
-            <input type="text" name="tussenvoegsel" id="tussenvoegsel" >
-        </p>
-        <p>
-            <label for="achternaam">Achternaam:</label>
-            <input type="text" name="achternaam" id="achternaam" required>
-        </p>
-        <p>
-            <label for="massagesoort">Massagesoort:</label>
-            <input type="text" name="massagesoort" id="massagesoort" required>
-        </p>
-        <input type="submit" value="Submit">
-    </form>
-</div>
-<div id="klanten">
-    <h1>Klanten</h1>
-    <?php
-    // mysql connect importeren
-        include "connect.php";
+    <main id="container">
+        <?php include 'includes/navigatie.php';?>
+        <div id="toevoegen">
+            <h1>Toevoegen</h1>
+            <form action="verzonden.php" method="post">
+                <p>
+                    <label for="voornaam">Voornaam:</label>
+                    <input type="text" name="voornaam" id="voornaam" required>
+                </p>
+                <p>
+                    <label for="tussenvoegsel">Tussenvoegsel:</label>
+                    <input type="text" name="tussenvoegsel" id="tussenvoegsel" >
+                </p>
+                <p>
+                    <label for="achternaam">Achternaam:</label>
+                    <input type="text" name="achternaam" id="achternaam" required>
+                </p>
+                <p>
+                    <label for="massagesoort">Massagesoort:</label>
+                    <input type="text" name="massagesoort" id="massagesoort" required>
+                </p>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="klanten">
+            <h1>Klanten</h1>
+            <?php
+            // mysql connect importeren
+            include "connect.php";
 
-        $query = "SELECT * FROM klanten ";
+            $query = "SELECT * FROM klanten ";
 
 
-        echo '<table border="0" cellspacing="2" cellpadding="2"> 
-            <tr> 
-                <td> klantid </td> 
-                <td> voornaam </td> 
-                <td> tussenvoegsel </td> 
-                <td> achternaam </td>  
-                <td> massageinfo</td>  
-            </tr>';
+            echo '<table border="0" cellspacing="2" cellpadding="2"> 
+                <tr>
+                    <td> voornaam </td> 
+                    <td> tussenvoeg </td> 
+                    <td> achternaam </td>  
+                    <td> massageinfo</td>  
+                </tr>';
 
-        if ($result = $mysqli->query($query)) {
-            while ($row = $result->fetch_assoc()) {
-                $id = $row["klantid"];
-                $voornaam = $row["voornaam"];
-                $tussenvoegsel = $row["tussenvoegsel"];
-                $achternaam = $row["achternaam"];
-                $massage = $row["massagesoort"];
+            if ($result = $mysqli->query($query)) {
+                while ($row = $result->fetch_assoc()) {
+                    $id = $row["klantid"];
+                    $voornaam = $row["voornaam"];
+                    $tussenvoegsel = $row["tussenvoegsel"];
+                    $achternaam = $row["achternaam"];
+                    $massage = $row["massagesoort"];
 
-            echo '<tr> 
-                    <td>'.$id.'</td> 
-                    <td>'.$voornaam.'</td> 
-                    <td>'.$tussenvoegsel.'</td> 
-                    <td>'.$achternaam.'</td>  
-                    <td><b>'.$massage.'</b></td>';
+                    echo '<tr> 
+                        <td>'.$voornaam.'</td> 
+                        <td>'.$tussenvoegsel.'</td> 
+                        <td>'.$achternaam.'</td>  
+                        <td><b>'.$massage.'</b></td>';
                     echo "<td><a href=update.php?klantid=$id>UPDATE</a></td>";
                     echo "<td><a href=delete.php?klantid=$id>DELETE</a></td>";
-                  echo '</tr>';
-        }
-        $result->free();
-    }
-?>
-</div>
-<?php include 'includes/footer.php';?>
+                    echo '</tr>';
+                }
+                $result->free();
+            }
+            ?>
+        </div>
+        <?php include 'includes/footer.php';?>
+    </main>
 </body>
 </html>

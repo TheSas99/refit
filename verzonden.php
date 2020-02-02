@@ -9,11 +9,11 @@ if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
 
-// Escape user inputs for security
-$voornaam = mysqli_real_escape_string($link, $_REQUEST['voornaam']);
-$tussenvoegsel = mysqli_real_escape_string($link, $REQUEST['tussenvoegsel']);
-$achternaam = mysqli_real_escape_string($link, $_REQUEST['achternaam']);
-$massagesoort = mysqli_real_escape_string($link, $_REQUEST['massagesoort']);
+// Escape user inputs for security  $_REQUEST['voornaam']
+$voornaam = mysqli_real_escape_string($link, htmlentities($_POST['voornaam']));
+$tussenvoegsel = mysqli_real_escape_string($link, htmlentities($_POST['tussenvoegsel']));
+$achternaam = mysqli_real_escape_string($link,htmlentities($_POST['achternaam']));
+$massagesoort = mysqli_real_escape_string($link,htmlentities($_POST['massagesoort']));
 
 // Attempt insert query execution
 $sql = "INSERT INTO klanten (voornaam, tussenvoegsel, achternaam, massagesoort) VALUES ('$voornaam', '$tussenvoegsel',  '$achternaam', '$massagesoort')";

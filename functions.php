@@ -22,20 +22,11 @@ function register(){
 
     // receive all input values from the form. Call the e() function
     // defined below to escape form values
-    $username    =  e($_POST['username']);
-    $email       =  e($_POST['email']);
-    $password_1  =  e($_POST['password_1']);
-    $password_2  =  e($_POST['password_2']);
+    $username    =  e(htmlentities($_POST['username']));
+    $email       =  e(htmlentities($_POST['email']));
+    $password_1  =  e(htmlentities($_POST['password_1']));
+    $password_2  =  e(htmlentities($_POST['password_2']));
 
-    // Escape user inputs for security
-    $username = mysqli_real_escape_string($db, $_REQUEST['username']);
-    $email = mysqli_real_escape_string($db, $REQUEST['email']);
-    $password_1 = mysqli_real_escape_string($db, $_REQUEST['password_1']);
-    $password_2 = mysqli_real_escape_string($db, $_REQUEST['password_2']);
-
-    // Ensure there are no html_tags in form
-    $username = htmlentities($_REQUEST['username']);
-    $email = htmlentities($REQUEST['email']);
 
     // form validation: ensure that the form is correctly filled
     if (empty($username)) {
@@ -48,7 +39,7 @@ function register(){
         array_push($errors, "Wachtwoord is benodigd");
     }
     if ($password_1 != $password_2) {
-        array_push($errors, "De wachtwoorden zijn niet hetzelfde");
+        array_push($errors, "De wachtwoorden zijn niet gelijk aan elkaar");
     }
 
     // register user if there are no errors in the form
@@ -60,7 +51,7 @@ function register(){
             $query = "INSERT INTO users (username, email, user_type, password)
 					  VALUES('$username', '$email', '$user_type', '$password')";
             mysqli_query($db, $query);
-            $_SESSION['success']  = "New user successfully created!!";
+            $_SESSION['success']  = "Nieuwe gebruiker succesvol geregistreerd!!";
             header('location: index.php');
         }else{
             $query = "INSERT INTO users (username, email, user_type, password)
@@ -71,7 +62,7 @@ function register(){
             $logged_in_user_id = mysqli_insert_id($db);
 
             $_SESSION['user'] = getUserById($logged_in_user_id); // put logged in user in session
-            $_SESSION['success']  = "You are now logged in";
+            $_SESSION['success']  = "U bent nu ingelogd";
             header('location: index.php');
         }
     }
