@@ -16,6 +16,16 @@
             <button onclick="myFunction()">Klik voor groet!</button>
             <h3 id="demo"></h3>
         </div>
+        <div id="info">
+            <h4>Hoe werkt het?</h4>
+            <br>
+            <p>Op deze website is het mogelijk om klantgegevens en afspraken toe te voegen.<br> Het is ook
+            mogelijk om deze gegevens te wijzigen of te verwijderen mochten deze <br>onverhoopt niet meer door gaan
+                of als deze verkeerd zijn ingevuld.</p>
+            <br>
+            <br>
+            <p>Bij eventuele problemen kunt u een bericht sturen naar <a href="mailto:0996746@hr.nl">0996746@hr.nl</a></p>
+        </div>
         <?php include 'includes/footer.php';?>
     </main>
 </body>

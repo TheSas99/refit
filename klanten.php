@@ -51,6 +51,8 @@ if (isset($_GET['logout'])) {
                 </p>
                 <input type="submit" value="Submit">
             </form>
+            <p>Als de klant al bestaat kan er direct een afspraak worden gemaakt voor deze klant op deze
+                <a href="afspraken.php">pagina</a></p>
         </div>
         <div id="klanten">
             <h1>Klanten</h1>

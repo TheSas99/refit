@@ -101,13 +101,21 @@ main {
     text-align: center;
 
 }
+#info {
+    background-color: #7c46b0;
+    color: white;
+    text-align: center;
+}
+#info a {
+    color: hotpink;
+}
 #afspraken {
     text-align: center;
-    background-color: aqua;
+    background-color: #7c46b0;
 }
 #klanten {
     text-align: center;
-    background-color: aqua;
+    background-color: #7c46b0;
 
 }
 #toevoegen {
@@ -147,5 +155,5 @@ footer {
 }
 .report-container {
     text-align: center;
-    background-color: aqua;
+    background-color: #7c46b0;
 }
